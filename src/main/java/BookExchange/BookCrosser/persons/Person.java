@@ -19,10 +19,13 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     private String email;
 
+    @NonNull
     private String password;
 
+    @NonNull
     private String phoneNumber;
 
     private byte[] picture;
