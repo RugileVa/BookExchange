@@ -42,6 +42,7 @@ public class Advert {
 
     @OneToMany(mappedBy = "advert")
     private List<History> historyEntries = new ArrayList<>();
+
     @Override
     public String toString() {
         return "Advert{" +
@@ -54,6 +55,8 @@ public class Advert {
                 ", condition='" + condition + '\'' +
                 ", price=" + price +
                 ", advertImage=" + Arrays.toString(advertImage) +
+                ", person=" + person +
+                ", historyEntries=" + historyEntries +
                 '}';
     }
 
@@ -62,12 +65,12 @@ public class Advert {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Advert advert = (Advert) o;
-        return Objects.equals(id, advert.id) && Objects.equals(date, advert.date) && tag == advert.tag && Objects.equals(title, advert.title) && Objects.equals(author, advert.author) && Objects.equals(genre, advert.genre) && Objects.equals(condition, advert.condition) && Objects.equals(price, advert.price) && Arrays.equals(advertImage, advert.advertImage);
+        return Objects.equals(id, advert.id) && Objects.equals(date, advert.date) && tag == advert.tag && Objects.equals(title, advert.title) && Objects.equals(author, advert.author) && Objects.equals(genre, advert.genre) && Objects.equals(condition, advert.condition) && Objects.equals(price, advert.price) && Arrays.equals(advertImage, advert.advertImage) && Objects.equals(person, advert.person) && Objects.equals(historyEntries, advert.historyEntries);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, date, tag, title, author, genre, condition, price);
+        int result = Objects.hash(id, date, tag, title, author, genre, condition, price, person, historyEntries);
         result = 31 * result + Arrays.hashCode(advertImage);
         return result;
     }

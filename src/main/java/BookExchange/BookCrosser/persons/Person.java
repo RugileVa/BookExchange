@@ -43,4 +43,18 @@ public class Person {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(id, person.id) && Objects.equals(email, person.email) && Objects.equals(password, person.password) && Objects.equals(phoneNumber, person.phoneNumber) && Arrays.equals(picture, person.picture) && Objects.equals(adverts, person.adverts) && Objects.equals(histories, person.histories);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, email, password, phoneNumber, adverts, histories);
+        result = 31 * result + Arrays.hashCode(picture);
+        return result;
+    }
 }

@@ -36,6 +36,8 @@ public class History {
         return "History{" +
                 "id=" + id +
                 ", date=" + date +
+                ", advert=" + advert +
+                ", person=" + person +
                 '}';
     }
 
@@ -44,11 +46,11 @@ public class History {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         History history = (History) o;
-        return Objects.equals(id, history.id) && Objects.equals(date, history.date);
+        return Objects.equals(id, history.id) && Objects.equals(date, history.date) && Objects.equals(advert, history.advert) && Objects.equals(person, history.person);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, date);
+        return Objects.hash(id, date, advert, person);
     }
 }
