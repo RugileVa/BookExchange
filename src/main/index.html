@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyA4yiZZUzPKUrKiHz3FvOToGUkVQgDKmHo",
+            authDomain: "bookexchanger-d26d6.firebaseapp.com",
+            projectId: "bookexchanger-d26d6",
+            storageBucket: "bookexchanger-d26d6.appspot.com",
+            messagingSenderId: "879975800574",
+            appId: "1:879975800574:web:380d938297eb4b6f0d4faf",
+            measurementId: "G-V2B6P324CZ"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js'
+
+        function signin() {
+            const email = document.querySelector("#input1").value;
+            const password = document.querySelector("#input2").value;
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log(user)
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorMessage)
+                });
+        }
+        document.querySelector("input[type='button']").addEventListener("click", signin)
+    </script>
+</head>
+<body>
+
+<form>
+    <label for="input1">Input 1:</label>
+    <input type="text" id="input1" name="input1"><br><br>
+    <label for="input2">Input 2:</label>
+    <input type="text" id="input2" name="input2"><br><br>
+    <input type="button" value="Submit">
+</form>
+
+</body>
+</html>
