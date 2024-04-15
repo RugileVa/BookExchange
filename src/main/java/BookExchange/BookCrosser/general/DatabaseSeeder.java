@@ -11,7 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
+
+
 
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
@@ -56,13 +60,13 @@ public class DatabaseSeeder implements CommandLineRunner {
         advertRepository.save(advert1);
 
         Advert advert2 = new Advert();
-        advert2.setDate(new Date());
+        advert2.setDate(Calendar.getInstance().getTime());
         advert2.setTag(TAG_TYPE.BUY);
         advert2.setTitle("Advert Title 2");
         advert2.setAuthor("Author 2");
         advert2.setGenre("Genre 2");
         advert2.setCondition("Condition 2");
-        advert2.setPrice(BigDecimal.valueOf(20.99));
+        advert2.setPrice(BigDecimal.valueOf(20.01));
         advert2.setPerson(person2);
         // Set other properties for advert2
         advertRepository.save(advert2);
