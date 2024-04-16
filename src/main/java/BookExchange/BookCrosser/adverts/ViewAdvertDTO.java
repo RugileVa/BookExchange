@@ -22,4 +22,6 @@ public class ViewAdvertDTO {
 
     private byte[] advertImage;
 
+    private PersonsDetailsDTO personsDetailsDTO;
+
 }

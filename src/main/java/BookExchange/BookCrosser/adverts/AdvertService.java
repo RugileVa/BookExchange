@@ -1,5 +1,6 @@
 package BookExchange.BookCrosser.adverts;
 
+import BookExchange.BookCrosser.persons.Person;
 import BookExchange.BookCrosser.persons.PersonsDetailsDTO;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class AdvertService {
     public AdvertService(AdvertRepository advertRepository) {
         this.advertRepository = advertRepository;
     }
-    private ViewAdvertDTO convertToViewAdvertDTO(Advert advert){
+    private ViewAdvertDTO convertToViewAdvertDTO(Advert advert, Person person){
         ViewAdvertDTO dto = new ViewAdvertDTO();
         dto.setDate(advert.getDate());
         dto.setTag(advert.getTag());
@@ -26,11 +27,13 @@ public class AdvertService {
         dto.setAdvertImage(advert.getAdvertImage());
 
         PersonsDetailsDTO personDTO = new PersonsDetailsDTO();
-        personDTO.setUsername(personDTO.getUsername());
-        personDTO.setPhoneNumber(personDTO.getPhoneNumber());
-        personDTO.setEmail(personDTO.getEmail());
-        personDTO.setPicture(personDTO.getPicture());
 
+        personDTO.setUsername(person.getUsername());
+       // personDTO.setPhoneNumber(person.getPhoneNumber());
+        personDTO.setEmail(person.getEmail());
+        personDTO.setPicture(person.getPicture());
+
+        dto.setPersonsDetailsDTO(dto.getPersonsDetailsDTO());
         return dto;
     }
     public List<Advert> getRecentAdverts(){
