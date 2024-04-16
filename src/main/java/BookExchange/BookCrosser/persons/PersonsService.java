@@ -1,6 +1,8 @@
 package BookExchange.BookCrosser.persons;
 
 import BookExchange.BookCrosser.general.UnauthorizedAccessException;
+import BookExchange.BookCrosser.persons.dto.PersonsDetailsDTO;
+import BookExchange.BookCrosser.persons.dto.SignUpDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,4 +1,4 @@
-package BookExchange.BookCrosser.persons;
+package BookExchange.BookCrosser.persons.dto;
 
 import lombok.Getter;
 import lombok.Setter;

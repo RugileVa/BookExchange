@@ -1,5 +1,7 @@
 package BookExchange.BookCrosser.persons;
 
+import BookExchange.BookCrosser.persons.dto.PersonsDetailsDTO;
+import BookExchange.BookCrosser.persons.dto.SignUpDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -35,5 +37,11 @@ public class PersonsController {
         PersonsDetailsDTO detailsDTO = personsService.getPersonDetails();
         return ResponseEntity.ok(detailsDTO);
     }
+
+//    @PatchMapping("/update")
+//    public ResponseEntity<?> updatePerson(@RequestBody UpdatePersonDTO updatePersonDTO) {
+//        personsService.updatePerson(updatePersonDTO);
+//        return ResponseEntity.ok("Person updated successfully");
+//    }
 
 }
