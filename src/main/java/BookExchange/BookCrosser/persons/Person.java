@@ -3,13 +3,10 @@ package BookExchange.BookCrosser.persons;
 import BookExchange.BookCrosser.adverts.Advert;
 import BookExchange.BookCrosser.histories.History;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table
@@ -20,7 +17,11 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String firebaseId;
+
     private String username;
+
+    private String phoneNumber;
 
     private String email;
 
@@ -31,13 +32,5 @@ public class Person {
 
     @OneToMany(mappedBy = "person")
     private List<History> histories = new ArrayList<>();
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                '}';
-    }
-
 
 }
