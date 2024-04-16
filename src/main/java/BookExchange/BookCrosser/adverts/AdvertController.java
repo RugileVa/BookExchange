@@ -20,16 +20,20 @@ public class AdvertController {
 
      //displayAdverts function. This will listen for the page number input, and based on that will take the adverts from the list and display them
     @GetMapping("/")
-    public ResponseEntity<List<ViewAdvertDTO>> displayableAdverts(@RequestParam int pageNum){
+    public ResponseEntity<List<DisplayAdvertDTO>> displayableAdverts(@RequestParam int pageNum,
+                                                                     @RequestParam(required = false) String title,
+                                                                     @RequestParam(required = false) String author,
+                                                                     @RequestParam(required = false) String genre,
+                                                                     @RequestParam(required = false) TAG_TYPE tag){
         int advertCount = 10;
-        List<ViewAdvertDTO> recentAdverts = advertService.getRecentAdvertDTO();
+        List<DisplayAdvertDTO> recentAdverts = advertService.getDisplayAdvertDTO(title,author,genre,tag);
         //offset is needed
         int startIndex = (pageNum * advertCount)-advertCount;
         int endIndex = Math.min(startIndex + advertCount, recentAdverts.size());
         if(startIndex >= recentAdverts.size()){
             return ResponseEntity.ok(Collections.emptyList());
         }
-        List<ViewAdvertDTO> advertsToBeDisplayed = recentAdverts.subList(startIndex,endIndex);
+        List<DisplayAdvertDTO> advertsToBeDisplayed = recentAdverts.subList(startIndex,endIndex);
         return ResponseEntity.ok(advertsToBeDisplayed);
     }
 

@@ -36,14 +36,38 @@ public class AdvertService {
         dto.setPersonsDetailsDTO(dto.getPersonsDetailsDTO());
         return dto;
     }
-    public List<Advert> getRecentAdverts(){
-        return advertRepository.findRecentAdverts();
-    }
-    public List<ViewAdvertDTO> getRecentAdvertDTO(){
+    public List<ViewAdvertDTO> getViewAdvertDTO(){
         List<Advert> recentAdverts = advertRepository.findRecentAdverts();
         return recentAdverts.stream()
                 .map(this::convertToViewAdvertDTO)
                 .collect(Collectors.toList());
     }
+    private DisplayAdvertDTO convertToDisplayAdvertDTO(Advert advert){
+        DisplayAdvertDTO dto = new DisplayAdvertDTO();
+        dto.setDate(advert.getDate());
+        dto.setTag(advert.getTag());
+        dto.setTitle(advert.getTitle());
+        dto.setAuthor(advert.getAuthor());
+        dto.setGenre(advert.getGenre());
+        dto.setCondition(advert.getCondition());
+        dto.setPrice(advert.getPrice());
+        dto.setAdvertImage(advert.getAdvertImage());
+        return dto;
+    }
+    public List<DisplayAdvertDTO> getDisplayAdvertDTO(String title, String author, String genre, TAG_TYPE tag){
+        List<Advert> recentAdverts = advertRepository.findAdvertsBySearchCriteria(title,author,genre,tag);
+        return recentAdverts.stream()
+                .map(this::convertToDisplayAdvertDTO)
+                .collect(Collectors.toList());
+    }
+    public List<Advert> findAdvertsBySearchCriteria(String title, String author, String genre, TAG_TYPE tag){
+       String adjustedTitle = (title != null && !title.isEmpty()) ? title : null;
+       String adjustedAuthor = (author != null && !author.isEmpty()) ? author : null;
+      String adjustedGenre = (genre != null && !genre.isEmpty()) ? genre : null;
+       return advertRepository.findAdvertsBySearchCriteria(title, author, genre, tag);
 
+    }
+    public List<Advert> getRecentAdverts(){
+        return advertRepository.findRecentAdverts();
+    }
 }
