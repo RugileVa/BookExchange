@@ -22,8 +22,6 @@ public class AdvertService {
         dto.setTitle(advert.getTitle());
         dto.setAuthor(advert.getAuthor());
         dto.setGenre(advert.getGenre());
-        dto.setCondition(advert.getCondition());
-        dto.setPrice(advert.getPrice());
         dto.setAdvertImage(advert.getAdvertImage());
 
         PersonsDetailsDTO personDTO = new PersonsDetailsDTO();
@@ -49,8 +47,6 @@ public class AdvertService {
         dto.setTitle(advert.getTitle());
         dto.setAuthor(advert.getAuthor());
         dto.setGenre(advert.getGenre());
-        dto.setCondition(advert.getCondition());
-        dto.setPrice(advert.getPrice());
         dto.setAdvertImage(advert.getAdvertImage());
         return dto;
     }
@@ -61,9 +57,6 @@ public class AdvertService {
                 .collect(Collectors.toList());
     }
     public List<Advert> findAdvertsBySearchCriteria(String title, String author, String genre, TAG_TYPE tag){
-       String adjustedTitle = (title != null && !title.isEmpty()) ? title : null;
-       String adjustedAuthor = (author != null && !author.isEmpty()) ? author : null;
-      String adjustedGenre = (genre != null && !genre.isEmpty()) ? genre : null;
        return advertRepository.findAdvertsBySearchCriteria(title, author, genre, tag);
 
     }

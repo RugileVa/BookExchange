@@ -53,8 +53,6 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert1.setTitle("Advert Title 1");
         advert1.setAuthor("Author 1");
         advert1.setGenre("Genre 1");
-        advert1.setCondition("Condition 1");
-        advert1.setPrice(BigDecimal.valueOf(10.99));
         advert1.setPerson(person1);
         // Set other properties for advert1
         advertRepository.save(advert1);
@@ -65,8 +63,6 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert2.setTitle("Advert Title 2");
         advert2.setAuthor("Author 2");
         advert2.setGenre("Genre 2");
-        advert2.setCondition("Condition 2");
-        advert2.setPrice(BigDecimal.valueOf(20.01));
         advert2.setPerson(person2);
         // Set other properties for advert2
         advertRepository.save(advert2);

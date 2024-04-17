@@ -11,7 +11,6 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/adverts/")
-
 public class AdvertController {
     private final AdvertService advertService;
     public AdvertController(AdvertService advertService){
@@ -36,5 +35,4 @@ public class AdvertController {
         List<DisplayAdvertDTO> advertsToBeDisplayed = recentAdverts.subList(startIndex,endIndex);
         return ResponseEntity.ok(advertsToBeDisplayed);
     }
-
 }
