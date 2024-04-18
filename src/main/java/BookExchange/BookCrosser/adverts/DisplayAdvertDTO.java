@@ -8,17 +8,12 @@ import java.util.Date;
 @Getter
 @Setter
 public class DisplayAdvertDTO {
+    private Long id;
     private Date date;
     private TAG_TYPE tag;
     private String title;
-
     private String author;
-
     private String genre;
-
-    private String condition;
-
-    private BigDecimal price;
-
+    private String description;
     private byte[] advertImage;
 }

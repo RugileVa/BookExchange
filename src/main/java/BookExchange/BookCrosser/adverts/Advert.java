@@ -29,6 +29,7 @@ public class Advert {
     private String author;
 
     private String genre;
+    private String description;
 
     private byte[] advertImage;
 
@@ -48,6 +49,7 @@ public class Advert {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", genre='" + genre + '\'' +
+                ", description='" + description + '\''+
                 ", advertImage=" + Arrays.toString(advertImage) +
                 ", person=" + person +
                 ", historyEntries=" + historyEntries +

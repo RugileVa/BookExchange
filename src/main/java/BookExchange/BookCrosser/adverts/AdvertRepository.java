@@ -6,14 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.net.UnknownServiceException;
 import java.util.List;
 
 @Repository
 public interface AdvertRepository extends JpaRepository<Advert, Long> {
 
-    // Will return the List of adverts that are ordered by creation date starting from the most recent
-    @Query("SELECT a FROM Advert a ORDER BY a.date DESC")
-    List<Advert> findRecentAdverts();
     // Will return List of adverts by search criteria and order by creation date
     @Query("SELECT a FROM Advert a " +
             "WHERE (COALESCE(:title, '') = '' OR a.title ILIKE CONCAT('%', :title, '%')) " +

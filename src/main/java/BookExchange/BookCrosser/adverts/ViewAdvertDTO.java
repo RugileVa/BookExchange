@@ -11,17 +11,11 @@ public class ViewAdvertDTO {
     private Date date;
     private TAG_TYPE tag;
     private String title;
-
     private String author;
-
     private String genre;
-
-    private String condition;
-
-    private BigDecimal price;
-
+    private String description;
     private byte[] advertImage;
-
-    private PersonsDetailsDTO personsDetailsDTO;
-
+    private String username;
+    private String phoneNumber;
+    private String email;
 }

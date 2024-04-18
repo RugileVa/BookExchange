@@ -1,13 +1,12 @@
 package BookExchange.BookCrosser.adverts;
 
+import BookExchange.BookCrosser.persons.Person;
 import BookExchange.BookCrosser.persons.PersonsController;
+import org.antlr.v4.runtime.atn.SemanticContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/adverts/")
@@ -34,5 +33,17 @@ public class AdvertController {
         }
         List<DisplayAdvertDTO> advertsToBeDisplayed = recentAdverts.subList(startIndex,endIndex);
         return ResponseEntity.ok(advertsToBeDisplayed);
+    }
+
+    @GetMapping("/view")
+    public ResponseEntity<ViewAdvertDTO> seeAdvertDetails(@RequestParam Long id){
+        Optional<Advert> optionalAdvert = advertService.findById(id);
+        if(optionalAdvert.isEmpty()){
+            //will return empty viewAdvertDTO for now
+            return ResponseEntity.ok(new ViewAdvertDTO());
+        }
+        Advert advert = optionalAdvert.get();
+        ViewAdvertDTO viewAdvertDTO = advertService.convertToViewAdvertDTO(advert);
+        return ResponseEntity.ok(viewAdvertDTO);
     }
 }
