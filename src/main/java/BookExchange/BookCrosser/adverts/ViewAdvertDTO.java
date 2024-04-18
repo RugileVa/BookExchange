@@ -1,9 +1,7 @@
 package BookExchange.BookCrosser.adverts;
 
-import java.math.BigDecimal;
-import java.util.Date;
 
-import BookExchange.BookCrosser.persons.PersonsDetailsDTO;
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 @Getter @Setter
