@@ -23,8 +23,8 @@ public class AdvertController {
     }
 
     @GetMapping("/view")
-    public ResponseEntity<ViewAdvertDTO> seeAdvertDetails(@RequestParam Long id){
-        Optional<Advert> optionalAdvert = advertService.findAdvertById(id);
+    public ResponseEntity<ViewAdvertDTO> seeAdvertDetails(@RequestParam Long advertId){
+        Optional<Advert> optionalAdvert = advertService.findAdvertById(advertId);
         if(optionalAdvert.isEmpty()){
             //will return empty viewAdvertDTO for now
             return ResponseEntity.ok(new ViewAdvertDTO());
@@ -38,4 +38,15 @@ public class AdvertController {
         advertService.createAdvert(advertDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(advertDTO);
     }
+    @PostMapping("/update")
+    public ResponseEntity<?> updateAdvert(@RequestBody AdvertDTO advertDTO){
+        advertService.updateAdvert(advertDTO);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(advertDTO);
+    }
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteAdvert(@RequestParam Long advertId){
+        advertService.deleteAdvert(advertId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
 }

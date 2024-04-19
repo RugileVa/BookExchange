@@ -7,6 +7,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class AdvertDTO {
+    private Long id;
     private Date date;
     private TAG_TYPE tag;
     private String title;

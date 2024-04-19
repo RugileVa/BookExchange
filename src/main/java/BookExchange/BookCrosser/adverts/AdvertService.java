@@ -22,6 +22,9 @@ public class AdvertService {
         this.advertRepository = advertRepository;
         this.personRepository = personRepository;
     }
+    public Optional<Advert> findAdvertById(Long id){
+        return advertRepository.findById(id);
+    }
     public ViewAdvertDTO convertToViewAdvertDTO(Advert advert){
         ViewAdvertDTO dto = new ViewAdvertDTO();
         dto.setDate(advert.getDate());
@@ -37,9 +40,9 @@ public class AdvertService {
         dto.setPhoneNumber(person.getPhoneNumber());
         return dto;
     }
-
     private AdvertDTO convertToAdvertDTO(Advert advert){
         AdvertDTO dto = new AdvertDTO();
+        dto.setId(advert.getId());
         dto.setDate(advert.getDate());
         dto.setTag(advert.getTag());
         dto.setTitle(advert.getTitle());
@@ -67,9 +70,6 @@ public class AdvertService {
         }
         return displayAdvertDTOList.subList(startIndex,endIndex);
     }
-    public Optional<Advert> findAdvertById(Long id){
-        return advertRepository.findById(id);
-    }
     public void createAdvert(AdvertDTO advertDTO){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
@@ -93,6 +93,43 @@ public class AdvertService {
             throw new UnauthorizedAccessException("User not authenticated");
         }
     }
-
-
+    public void updateAdvert(AdvertDTO advertDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null){
+            Long advertId = advertDTO.getId();
+            Optional<Advert> optionalAdvert = advertRepository.findById(advertId);
+            if(optionalAdvert.isPresent()){
+                Advert advert = optionalAdvert.get();
+                advert.setId(advertDTO.getId());
+                advert.setTitle(advertDTO.getTitle());
+                advert.setAuthor(advertDTO.getAuthor());
+                advert.setGenre(advertDTO.getGenre());
+                advert.setDate(new Date());
+                advert.setDescription(advertDTO.getDescription());
+                advert.setTag(advertDTO.getTag());
+                advert.setAdvertImage(advertDTO.getAdvertImage());
+                advertRepository.save(advert);
+            }
+            else throw new EntityNotFoundException("Advert not found");
+        }
+        else throw new UnauthorizedAccessException("User not authenticated");
+    }
+    public void deleteAdvert(Long advertId){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            String firebaseId = authentication.getName();
+            Optional<Person> optionalPerson = personRepository.findByFirebaseId(firebaseId);
+            if(optionalPerson.isPresent()){
+                Long currentUserId = optionalPerson.get().getId();
+                Optional<Advert> optionalAdvertToDelete = advertRepository.findById(advertId);
+                if(optionalAdvertToDelete.isPresent()){
+                    Advert advertToDelete = optionalAdvertToDelete.get();
+                    advertRepository.delete(advertToDelete);
+                }
+                else throw new EntityNotFoundException("Advert not found");
+            }
+            else throw new EntityNotFoundException("User not found");
+        }
+        else throw new UnauthorizedAccessException("User not authenticated");
+    }
 }
