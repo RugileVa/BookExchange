@@ -25,4 +25,6 @@ public interface AdvertRepository extends JpaRepository<Advert, Long> {
             @Param("genre") String genre,
             @Param("tag") TAG_TYPE tag
     );
+
+    List<Advert> findAdvertsByPerson(Person person);
 }

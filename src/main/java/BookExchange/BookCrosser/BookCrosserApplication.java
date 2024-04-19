@@ -10,5 +10,4 @@ public class BookCrosserApplication {
 		System.out.println("hehe");
 		SpringApplication.run(BookCrosserApplication.class, args);
 	}
-
 }

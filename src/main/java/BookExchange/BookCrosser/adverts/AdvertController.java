@@ -33,6 +33,11 @@ public class AdvertController {
         ViewAdvertDTO viewAdvertDTO = advertService.convertToViewAdvertDTO(advert);
         return ResponseEntity.ok(viewAdvertDTO);
     }
+    @GetMapping("/profile")
+    public ResponseEntity<List<AdvertDTO>> personAdverts(){
+        List<AdvertDTO> userAdverts = advertService.personAdverts();
+        return ResponseEntity.ok(userAdverts);
+    }
     @PostMapping("/create")
     public ResponseEntity<?> createAdvert(@RequestBody AdvertDTO advertDTO){
         advertService.createAdvert(advertDTO);
@@ -48,5 +53,4 @@ public class AdvertController {
         advertService.deleteAdvert(advertId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 }
