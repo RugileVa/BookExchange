@@ -1,11 +1,13 @@
 package BookExchange.BookCrosser.adverts;
 
-
-import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
-@Getter @Setter
-public class ViewAdvertDTO {
+
+import java.util.Date;
+@Getter
+@Setter
+public class AdvertDTO {
+    private Long id;
     private Date date;
     private TAG_TYPE tag;
     private String title;
@@ -13,7 +15,4 @@ public class ViewAdvertDTO {
     private String genre;
     private String description;
     private byte[] advertImage;
-    private String username;
-    private String phoneNumber;
-    private String email;
 }

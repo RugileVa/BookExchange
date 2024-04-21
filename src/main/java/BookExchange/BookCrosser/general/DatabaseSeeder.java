@@ -35,12 +35,16 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... args) {
         // Seed persons
         Person person1 = new Person();
+        person1.setUsername("BookReader3000");
+        person1.setPhoneNumber("22213123");
         person1.setEmail("person1@example.com");
 
         // Set other properties for person1
         personRepository.save(person1);
 
         Person person2 = new Person();
+        person2.setUsername("ILoVeHarryPotter");
+        person2.setPhoneNumber("2212312");
         person2.setEmail("person2@example.com");
 
         // Set other properties for person2
@@ -53,8 +57,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert1.setTitle("Advert Title 1");
         advert1.setAuthor("Author 1");
         advert1.setGenre("Genre 1");
-        advert1.setCondition("Condition 1");
-        advert1.setPrice(BigDecimal.valueOf(10.99));
+        advert1.setDescription("You will love this book!");
         advert1.setPerson(person1);
         // Set other properties for advert1
         advertRepository.save(advert1);
@@ -65,8 +68,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert2.setTitle("Advert Title 2");
         advert2.setAuthor("Author 2");
         advert2.setGenre("Genre 2");
-        advert2.setCondition("Condition 2");
-        advert2.setPrice(BigDecimal.valueOf(20.01));
+        advert2.setDescription("A very nice book!");
         advert2.setPerson(person2);
         // Set other properties for advert2
         advertRepository.save(advert2);

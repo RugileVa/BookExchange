@@ -1,49 +1,157 @@
 package BookExchange.BookCrosser.adverts;
 
+import BookExchange.BookCrosser.general.UnauthorizedAccessException;
 import BookExchange.BookCrosser.persons.Person;
-import BookExchange.BookCrosser.persons.PersonsDetailsDTO;
+import BookExchange.BookCrosser.persons.PersonRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class AdvertService {
     private final AdvertRepository advertRepository;
+    private final PersonRepository personRepository;
 
-    public AdvertService(AdvertRepository advertRepository) {
+    public AdvertService(AdvertRepository advertRepository, PersonRepository personRepository) {
         this.advertRepository = advertRepository;
+        this.personRepository = personRepository;
     }
-    private ViewAdvertDTO convertToViewAdvertDTO(Advert advert){
+    public Advert findAdvertById(Long id) {
+        Optional<Advert> optionalAdvert = advertRepository.findById(id);
+        if (optionalAdvert.isPresent()) {
+            return optionalAdvert.get(); // Correct behavior
+        } else {
+            throw new EntityNotFoundException("Advert with ID " + id + " not found");
+        }
+    }
+    public ViewAdvertDTO convertToViewAdvertDTO(Advert advert){
         ViewAdvertDTO dto = new ViewAdvertDTO();
         dto.setDate(advert.getDate());
         dto.setTag(advert.getTag());
         dto.setTitle(advert.getTitle());
         dto.setAuthor(advert.getAuthor());
         dto.setGenre(advert.getGenre());
-        dto.setCondition(advert.getCondition());
-        dto.setPrice(advert.getPrice());
+        dto.setDescription(advert.getDescription());
         dto.setAdvertImage(advert.getAdvertImage());
-
-        PersonsDetailsDTO personDTO = new PersonsDetailsDTO();
-
-        personDTO.setUsername(personDTO.getUsername());
-        personDTO.setPhoneNumber(personDTO.getPhoneNumber());
-        personDTO.setEmail(personDTO.getEmail());
-        personDTO.setPicture(personDTO.getPicture());
-
-        dto.setPersonsDetailsDTO(dto.getPersonsDetailsDTO());
+        Person person = advert.getPerson();
+        dto.setUsername(person.getUsername());
+        dto.setEmail(person.getEmail());
+        dto.setPhoneNumber(person.getPhoneNumber());
         return dto;
     }
-    public List<Advert> getRecentAdverts(){
-        return advertRepository.findRecentAdverts();
+    private AdvertDTO convertToAdvertDTO(Advert advert){
+        AdvertDTO dto = new AdvertDTO();
+        dto.setId(advert.getId());
+        dto.setDate(advert.getDate());
+        dto.setTag(advert.getTag());
+        dto.setTitle(advert.getTitle());
+        dto.setAuthor(advert.getAuthor());
+        dto.setGenre(advert.getGenre());
+        dto.setDescription(advert.getDescription());
+        dto.setAdvertImage(advert.getAdvertImage());
+        return dto;
     }
-    public List<ViewAdvertDTO> getRecentAdvertDTO(){
-        List<Advert> recentAdverts = advertRepository.findRecentAdverts();
-        return recentAdverts.stream()
-                .map(this::convertToViewAdvertDTO)
-                .collect(Collectors.toList());
+    List<AdvertDTO> mapAdvertDTOList(List<Advert> advertList){
+        return advertList.stream()
+                .map(this::convertToAdvertDTO)
+                .toList();
     }
-
+    public List<AdvertDTO> displayAdverts(FiltersDTO filtersDTO){
+        String title = filtersDTO.getTitle().isEmpty() ? null : filtersDTO.getTitle();
+        String author = filtersDTO.getAuthor().isEmpty() ? null : filtersDTO.getAuthor();
+        String genre = filtersDTO.getGenre().isEmpty() ? null : filtersDTO.getGenre();
+        TAG_TYPE tag = (filtersDTO.getTag() != null ? filtersDTO.getTag() : null);
+        int pageNum = filtersDTO.getPageNum();
+        List<Advert> recentAdverts = advertRepository.findAdvertsBySearchCriteria(title,author,genre,tag);
+        List<AdvertDTO>  displayAdvertDTOList = mapAdvertDTOList(recentAdverts);
+        // number 10 stands for adverts per page. It is a fixed value for now
+        int startIndex = (pageNum * 10) - 10;
+        int endIndex = Math.min(startIndex + 10, displayAdvertDTOList.size());
+        if(startIndex >= recentAdverts.size()){
+            return Collections.emptyList();
+        }
+        return displayAdvertDTOList.subList(startIndex,endIndex);
+    }
+    public void createAdvert(AdvertDTO advertDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            String firebaseId = authentication.getName();
+            Optional<Person> optionalPerson = personRepository.findByFirebaseId(firebaseId);
+            if (optionalPerson.isPresent()) {
+                Person person = optionalPerson.get();
+                Advert advert = new Advert();
+                advert.setDate(new Date());
+                advert.setTitle(advertDTO.getTitle());
+                advert.setAuthor(advertDTO.getAuthor());
+                advert.setGenre(advertDTO.getGenre());
+                advert.setTag(advertDTO.getTag());
+                advert.setDescription(advertDTO.getDescription());
+                advert.setAdvertImage(advertDTO.getAdvertImage());
+                advert.setPerson(person);
+                advertRepository.save(advert);
+            } else {
+                throw new EntityNotFoundException("User not found");
+            }
+        } else {
+            throw new UnauthorizedAccessException("User not authenticated");
+        }
+    }
+    public void updateAdvert(AdvertDTO advertDTO){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null){
+            Long advertId = advertDTO.getId();
+            Optional<Advert> optionalAdvert = advertRepository.findById(advertId);
+            if(optionalAdvert.isPresent()){
+                Advert advert = optionalAdvert.get();
+                advert.setId(advertDTO.getId());
+                advert.setTitle(advertDTO.getTitle());
+                advert.setAuthor(advertDTO.getAuthor());
+                advert.setGenre(advertDTO.getGenre());
+                advert.setDate(new Date());
+                advert.setDescription(advertDTO.getDescription());
+                advert.setTag(advertDTO.getTag());
+                advert.setAdvertImage(advertDTO.getAdvertImage());
+                advertRepository.save(advert);
+            }
+            else throw new EntityNotFoundException("Advert not found");
+        }
+        else throw new UnauthorizedAccessException("User not authenticated");
+    }
+    public void deleteAdvert(Long advertId){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            String firebaseId = authentication.getName();
+            Optional<Person> optionalPerson = personRepository.findByFirebaseId(firebaseId);
+            if(optionalPerson.isPresent()){
+                Long currentUserId = optionalPerson.get().getId();
+                Optional<Advert> optionalAdvertToDelete = advertRepository.findById(advertId);
+                if(optionalAdvertToDelete.isPresent()){
+                    Advert advertToDelete = optionalAdvertToDelete.get();
+                    advertRepository.delete(advertToDelete);
+                }
+                else throw new EntityNotFoundException("Advert not found");
+            }
+            else throw new EntityNotFoundException("User not found");
+        }
+        else throw new UnauthorizedAccessException("User not authenticated");
+    }
+    public List<AdvertDTO> personAdverts(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null){
+            String firebaseId = authentication.getName();
+            Optional<Person> optionalPerson = personRepository.findByFirebaseId(firebaseId);
+            if(optionalPerson.isPresent()){
+                Person person = optionalPerson.get();
+                List<Advert> advertList = advertRepository.findAdvertsByPerson(person);
+                return mapAdvertDTOList(advertList);
+            }
+        }
+        return Collections.emptyList();
+    }
 }
