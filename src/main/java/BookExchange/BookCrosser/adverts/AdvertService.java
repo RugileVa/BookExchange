@@ -22,8 +22,13 @@ public class AdvertService {
         this.advertRepository = advertRepository;
         this.personRepository = personRepository;
     }
-    public Optional<Advert> findAdvertById(Long id){
-        return advertRepository.findById(id);
+    public Advert findAdvertById(Long id) {
+        Optional<Advert> optionalAdvert = advertRepository.findById(id);
+        if (optionalAdvert.isPresent()) {
+            return optionalAdvert.get(); // Correct behavior
+        } else {
+            throw new EntityNotFoundException("Advert with ID " + id + " not found");
+        }
     }
     public ViewAdvertDTO convertToViewAdvertDTO(Advert advert){
         ViewAdvertDTO dto = new ViewAdvertDTO();

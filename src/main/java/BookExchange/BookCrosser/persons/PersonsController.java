@@ -20,20 +20,20 @@ public class PersonsController {
 
     @Operation(summary = "Register person", description = "Provide username and phone number. Email and firefox id is accessed from access token.")
     @PostMapping("/register")
-    public ResponseEntity<?> handleRegisterRequest(@RequestBody @Valid SignUpDTO data) {
+    public ResponseEntity<?> handleRegister(@RequestBody @Valid SignUpDTO data) {
         Person registeredPerson = personsService.registerPerson(data);
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredPerson);
     }
     @Operation(summary = "Delete currently authenticated person from local storage.")
     @DeleteMapping("/delete")
-    public ResponseEntity<?> handleDeleteRequest() {
+    public ResponseEntity<?> handleDelete() {
         personsService.deletePerson();
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @Operation(summary = "Get currently authenticated person details.")
     @GetMapping("/details")
-    public ResponseEntity<?> handleGetDetailsRequest() {
+    public ResponseEntity<?> handleGetDetails() {
         PersonsDetailsDTO detailsDTO = personsService.getPersonDetails();
         return ResponseEntity.ok(detailsDTO);
     }
