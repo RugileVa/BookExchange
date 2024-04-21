@@ -1,6 +1,5 @@
 package BookExchange.BookCrosser;
 
-import BookExchange.BookCrosser.adverts.AdvertService;
 import BookExchange.BookCrosser.persons.*;
 import BookExchange.BookCrosser.persons.dto.*;
 import BookExchange.BookCrosser.general.UnauthorizedAccessException;
@@ -18,9 +17,7 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class BookCrosserPersonsServiceTests {
@@ -171,8 +168,4 @@ class BookCrosserPersonsServiceTests {
 	}
 
 }
-
-
-
-
 
