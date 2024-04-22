@@ -67,7 +67,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert1.setTag(TAG_TYPE.BUY);
         advert1.setTitle("Whispers in the Woods");
         advert1.setAuthor("Emma Blackwood");
-        advert1.setGenre("Mystery/Thriller");
+        advert1.setGenre("Thriller");
         advert1.setDescription("I really love this book, but cannot find it. I'm willing to pay to up-to 20 eur.");
         advert1.setPerson(person1);
         // Set other properties for advert1
@@ -119,7 +119,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert6.setTag(TAG_TYPE.FOR_FREE);
         advert6.setTitle("The Oracle's Prophecy");
         advert6.setAuthor("Maya Stone");
-        advert6.setGenre("Fantasy/Adventure");
+        advert6.setGenre("Adventure");
         advert6.setDescription("I have multiple copies of this book. Can give away some of them if interested.");
         advert6.setPerson(person1);
         advertRepository.save(advert6);
@@ -129,7 +129,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert7.setTag(TAG_TYPE.FOR_FREE);
         advert7.setTitle("The Midnight Library");
         advert7.setAuthor("Lucy Graham");
-        advert7.setGenre("Contemporary Fiction");
+        advert7.setGenre("Fiction");
         advert7.setDescription("Can't stop reading this book over and over again. Please take it away from me.");
         advert7.setPerson(person2);
         advertRepository.save(advert7);
@@ -149,7 +149,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert9.setTag(TAG_TYPE.SELL);
         advert9.setTitle("Echoes of the Deep");
         advert9.setAuthor("Isabella Cruz");
-        advert9.setGenre("Historical Mystery");
+        advert9.setGenre("Mystery");
         advert9.setDescription("An interesting book for history geeks, we can talk about the price");
         advert9.setPerson(person2);
         advertRepository.save(advert9);
@@ -159,7 +159,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert10.setTag(TAG_TYPE.SELL);
         advert10.setTitle("The Alchemy of Fate");
         advert10.setAuthor("Oliver Knight");
-        advert10.setGenre("Fantasy/Romance");
+        advert10.setGenre("Fantasy");
         advert10.setDescription("Didn't like it. 5 eur.");
         advert10.setPerson(person2);
         advertRepository.save(advert10);
@@ -179,8 +179,8 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert12.setTag(TAG_TYPE.BUY);
         advert12.setTitle("The Clockmaker's Daughter");
         advert12.setAuthor("Benjamin Hart");
-        advert12.setGenre("Historical Mystery/Romance");
-        advert12.setDescription("Can't find this book in my local book  store or library. Will buy. 15 eur.");
+        advert12.setGenre("Historical Mystery");
+        advert12.setDescription("Will buy. 15 eur.");
         advert12.setPerson(person2);
         advertRepository.save(advert12);
 
@@ -189,7 +189,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert13.setTag(TAG_TYPE.EXCHANGE);
         advert13.setTitle("Starlight Serenade");
         advert13.setAuthor("Sophia Adams");
-        advert13.setGenre("Science Fiction/Romance");
+        advert13.setGenre("Romance");
         advert13.setDescription("Exchange for any children books");
         advert13.setPerson(person2);
         advertRepository.save(advert13);
@@ -199,7 +199,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert14.setTag(TAG_TYPE.EXCHANGE);
         advert14.setTitle("The Art of Deception");
         advert14.setAuthor("Nathan Clarke");
-        advert14.setGenre("Thriller/Suspense");
+        advert14.setGenre("Thriller");
         advert14.setDescription("Will exchange for any Harry Potter book");
         advert14.setPerson(person3);
         advertRepository.save(advert14);
@@ -209,7 +209,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert15.setTag(TAG_TYPE.FOR_FREE);
         advert15.setTitle("Whispers of the Ancients");
         advert15.setAuthor("Emily Chang");
-        advert15.setGenre("Fantasy/Adventure");
+        advert15.setGenre("Adventure");
         advert15.setDescription("Don't like it. Will give away for free");
         advert15.setPerson(person3);
         advertRepository.save(advert15);
@@ -219,7 +219,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert16.setTag(TAG_TYPE.BUY);
         advert16.setTitle("The Glass Garden");
         advert16.setAuthor("Jonathan Hayes");
-        advert16.setGenre("Literary Fiction");
+        advert16.setGenre("Fiction");
         advert16.setDescription("Need this book for my collection");
         advert16.setPerson(person3);
         advertRepository.save(advert16);
@@ -229,7 +229,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert17.setTag(TAG_TYPE.EXCHANGE);
         advert17.setTitle("The Songbird's Lament");
         advert17.setAuthor("Clara Evans");
-        advert17.setGenre("Historical Fiction/Romance");
+        advert17.setGenre("Romance");
         advert17.setDescription("Will exchange for anny programming book");
         advert17.setPerson(person3);
         advertRepository.save(advert17);
@@ -239,8 +239,8 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert18.setTag(TAG_TYPE.FOR_FREE);
         advert18.setTitle("The Shadowed Realm");
         advert18.setAuthor("Gabriel Knight");
-        advert18.setGenre("Fantasy/Adventure");
-        advert18.setDescription("Don't really want to throw it out, nor to bother with selling. Contact me if interested in this book");
+        advert18.setGenre("Adventure");
+        advert18.setDescription("Contact me if interested in this book");
         advert18.setPerson(person3);
         advertRepository.save(advert18);
 
@@ -249,7 +249,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert19.setTag(TAG_TYPE.EXCHANGE);
         advert19.setTitle("The Forgotten City");
         advert19.setAuthor("Rachel Bennett");
-        advert19.setGenre("Mystery/Thriller");
+        advert19.setGenre("Thriller");
         advert19.setDescription("Will exchange for any java book");
         advert19.setPerson(person3);
         advertRepository.save(advert19);

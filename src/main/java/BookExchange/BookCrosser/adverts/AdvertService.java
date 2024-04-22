@@ -70,9 +70,9 @@ public class AdvertService {
         int pageNum = filtersDTO.getPageNum();
         List<Advert> recentAdverts = advertRepository.findAdvertsBySearchCriteria(title,author,genre,tag);
         List<AdvertDTO>  displayAdvertDTOList = mapAdvertDTOList(recentAdverts);
-        // number 10 stands for adverts per page. It is a fixed value for now
-        int startIndex = (pageNum * 10) - 10;
-        int endIndex = Math.min(startIndex + 10, displayAdvertDTOList.size());
+        // number 8 stands for adverts per page. It is a fixed value for now
+        int startIndex = (pageNum * 8) - 8;
+        int endIndex = Math.min(startIndex + 8, displayAdvertDTOList.size());
         if(startIndex >= recentAdverts.size()){
             return Collections.emptyList();
         }
