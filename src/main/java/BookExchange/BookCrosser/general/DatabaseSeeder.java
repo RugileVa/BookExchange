@@ -35,10 +35,10 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... args) {
         // Seed persons
         Person person1 = new Person();
-        person1.setFirebaseId("FA1shqLMV2bN5vtdcGbJiW1CLdf1");
+        person1.setFirebaseId("JDkhDVCo2rdJCAtyZFTg6GEZ36p2");
         person1.setUsername("BookReader3000");
         person1.setPhoneNumber("22213123");
-        person1.setEmail("realharry223@bing.com");
+        person1.setEmail("test2@test.com");
 
         // Set other properties for person1
         personRepository.save(person1);
@@ -47,7 +47,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         person2.setFirebaseId("CzNRj48CeaYlgsiszgTqFlVeGXF2");
         person2.setUsername("ILoVeHarryPotter");
         person2.setPhoneNumber("2212312");
-        person2.setEmail("icecream3@inbox.lv");
+        person2.setEmail("test1@test.com");
 
         // Set other properties for person2
         personRepository.save(person2);
@@ -56,7 +56,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         person3.setFirebaseId("FA1shqLMV2bN5vtdcGbJiW1CLdf1");
         person3.setUsername("CoolLibrarian89");
         person3.setPhoneNumber("22321232");
-        person3.setEmail("eatreadsleeprepeat@gmail.com");
+        person3.setEmail("test@test.com");
 
         // Set other properties for person3
         personRepository.save(person3);
