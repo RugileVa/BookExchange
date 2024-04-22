@@ -79,7 +79,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert2.setTitle("Echoes of Eternity");
         advert2.setAuthor("Alexander Cross");
         advert2.setGenre("Fantasy");
-        advert2.setDescription("A rare fantasy book that i want to buy for my collection. Contact me if you are interested in selling it to me.");
+        advert2.setDescription("A rare fantasy book that i want to buy for my collection. Contact me!");
         advert2.setPerson(person1);
         // Set other properties for advert2
         advertRepository.save(advert2);
@@ -160,7 +160,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert10.setTitle("The Alchemy of Fate");
         advert10.setAuthor("Oliver Knight");
         advert10.setGenre("Fantasy");
-        advert10.setDescription("Didn't like it. 5 eur.");
+        advert10.setDescription("Didn't like it. 5 eur. Maybe even 1, if you bring french fries");
         advert10.setPerson(person2);
         advertRepository.save(advert10);
 
@@ -170,7 +170,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert11.setTitle("The Forgotten Kingdom");
         advert11.setAuthor("Elena Rodriguez");
         advert11.setGenre("Historical Fiction");
-        advert11.setDescription("Will buy this book. 10 eur max price");
+        advert11.setDescription("Will buy this book, beca. 10 eur max price");
         advert11.setPerson(person2);
         advertRepository.save(advert11);
 
@@ -180,7 +180,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         advert12.setTitle("The Clockmaker's Daughter");
         advert12.setAuthor("Benjamin Hart");
         advert12.setGenre("Historical Mystery");
-        advert12.setDescription("Will buy. 15 eur.");
+        advert12.setDescription("Will buy. 15 eur. Please, I really need it !");
         advert12.setPerson(person2);
         advertRepository.save(advert12);
 
