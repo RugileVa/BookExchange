@@ -53,7 +53,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         personRepository.save(person2);
 
         Person person3 = new Person();
-        person3.setFirebaseId("FA1shqLMV2bN5vtdcGbJiW1CLdf1");
+        person3.setFirebaseId("JDkhDVCo2rdJCAtyZFTg6GEZ36p2");
         person3.setUsername("tester3");
         person3.setPhoneNumber("28912332");
         person3.setEmail("test@test2.com");
