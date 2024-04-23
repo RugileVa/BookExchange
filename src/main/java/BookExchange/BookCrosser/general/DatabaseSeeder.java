@@ -35,28 +35,29 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... args) {
         // Seed persons
         Person person1 = new Person();
-        person1.setFirebaseId("JDkhDVCo2rdJCAtyZFTg6GEZ36p2");
-        person1.setUsername("BookReader3000");
-        person1.setPhoneNumber("22213123");
-        person1.setEmail("test2@test.com");
+
+        person1.setFirebaseId("FA1shqLMV2bN5vtdcGbJiW1CLdf1");
+        person1.setUsername("tester");
+        person1.setPhoneNumber("20106329");
+        person1.setEmail("test@test.com");
 
         // Set other properties for person1
         personRepository.save(person1);
 
         Person person2 = new Person();
         person2.setFirebaseId("CzNRj48CeaYlgsiszgTqFlVeGXF2");
-        person2.setUsername("ILoVeHarryPotter");
-        person2.setPhoneNumber("2212312");
-        person2.setEmail("test1@test.com");
+        person2.setUsername("tester1");
+        person2.setPhoneNumber("27870941");
+        person2.setEmail("test1@test1.com");
 
         // Set other properties for person2
         personRepository.save(person2);
 
         Person person3 = new Person();
-        person3.setFirebaseId("FA1shqLMV2bN5vtdcGbJiW1CLdf1");
-        person3.setUsername("CoolLibrarian89");
-        person3.setPhoneNumber("22321232");
-        person3.setEmail("test@test.com");
+        person3.setFirebaseId("JDkhDVCo2rdJCAtyZFTg6GEZ36p2");
+        person3.setUsername("tester3");
+        person3.setPhoneNumber("28912332");
+        person3.setEmail("test@test2.com");
 
         // Set other properties for person3
         personRepository.save(person3);
