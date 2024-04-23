@@ -35,6 +35,7 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... args) {
         // Seed persons
         Person person1 = new Person();
+
         person1.setFirebaseId("FA1shqLMV2bN5vtdcGbJiW1CLdf1");
         person1.setUsername("tester");
         person1.setPhoneNumber("20106329");
